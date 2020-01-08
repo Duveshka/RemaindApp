@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <div *ngIf="!registerMode" style="text-align: center">
+    <h1 class="text-primary">Make reminders!</h1>
+    <p class="lead">It's a simple app to plan your affairs!</p>
+    <div class="text-center">
+      <button class="btn btn-lg btn-warning mr-2" (click)="registerToggle()">Register</button>
+      <button class="btn btn-lg btn-warning">Learn more</button>
+    </div>
+  </div>
+
+  <div *ngIf="registerMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <app-register [valuesFromHome]="values"></app-register >
+      </div> 
+    </div>
+  </div>
+</div>
+

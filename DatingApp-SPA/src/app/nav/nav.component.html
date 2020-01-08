@@ -6,10 +6,10 @@
 
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="btn btn-outline-info my-2 my-sm-0" href="#">Lists <span class="sr-only">(current)</span></a>
+        <a class="btn btn-outline-info  mr-2" href="#">Lists <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-outline-info my-2 my-sm-0" href="#">My Reminders</a>
+        <a class="btn btn-outline-info " href="#">My Reminders</a>
       </li>
     </ul>
 
@@ -23,8 +23,8 @@
     </div>
 
     <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
-      <input class="form-control mr-sm-2" type="text" name="username" placeholder="UserName" required [(ngModel)]="model.username">
-      <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password" required [(ngModel)]="model.password">
+      <input class="form-control mr-2" type="text" name="username" placeholder="UserName" required [(ngModel)]="model.username">
+      <input class="form-control " type="password" name="password" placeholder="Password" required [(ngModel)]="model.password">
       <button [disabled]="!loginForm.valid" class="btn btn-info " type="submit">Login</button>
     </form>
 
