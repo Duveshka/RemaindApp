@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   registerMode = false;
   model: any = {};
 
-  constructor(public authService: AuthService, private alertify: AlertifyService, private http: HttpClient) { }
+  constructor(public authService: AuthService, private alertify: AlertifyService, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,6 +31,8 @@ export class HomeComponent implements OnInit {
       this.alertify.success('Logged OK');
     }, error => {
       this.alertify.error('Failed to log in');
+    }, () => {
+      this.router.navigate(['/Reminders']);
     });
   }
 
