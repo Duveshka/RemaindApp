@@ -16,13 +16,13 @@ namespace DatingApp.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.1");
 
-            modelBuilder.Entity("DatingApp.API.Models.Reminders", b =>
+            modelBuilder.Entity("DatingApp.API.Models.Reminder", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("ReminderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("DateTime")
+                    b.Property<DateTime>("DateTime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -34,7 +34,9 @@ namespace DatingApp.API.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("id");
+                    b.HasKey("ReminderId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reminders");
                 });
@@ -57,6 +59,15 @@ namespace DatingApp.API.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DatingApp.API.Models.Reminder", b =>
+                {
+                    b.HasOne("DatingApp.API.Models.User", "User")
+                        .WithMany("Reminders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,6 @@
+{
+    "debug.inlineValues": true,
+    "extensions.showRecommendationsOnlyOnDemand": true,
+    "editor.suggest.insertHighlight": true,
+    "files.autoGuessEncoding": true
+}
