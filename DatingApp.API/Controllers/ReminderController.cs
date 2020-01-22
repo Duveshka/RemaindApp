@@ -3,10 +3,16 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DatingApp.API.Data;
 using DatingApp.API.dtos;
+using DatingApp.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+using System.Collections.Generic;
+using System;
 
 namespace DatingApp.API.Controllers
 {
+    [Authorize]
     [Route("api/{userId}/[controller]")]
     [ApiController]
     public class ReminderController : ControllerBase
@@ -19,16 +25,24 @@ namespace DatingApp.API.Controllers
             _mapper = mapper;
         }
 
+        
         [HttpGet]
-
         public async Task<IActionResult> GetReminders(int userId)
         {
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
+            //     Console.Write(userId);
+            //     Console.Write("ATTENTION");
+            //     // Console.Write(User);
+
                 
+            // if (userId != int.Parse(user.FindFirst(ClaimTypes.NameIdentifier).Value)){
+                
+            //     return Unauthorized();}
+                
+            
+
             var reminders = await _repo.GetReminders(userId);
 
-            var remindersToReturn = _mapper.Map<ReminderForListdto>(reminders);
+            var remindersToReturn = _mapper.Map<IEnumerable<ReminderForListdto>>(reminders);
 
             return Ok(remindersToReturn);
 
@@ -38,8 +52,9 @@ namespace DatingApp.API.Controllers
         public async Task<IActionResult> GetReminder(int userId, int id)
         {
         
-            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-                return Unauthorized();
+            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)){
+            //     
+            //     return Unauthorized();}
             
             var reminder = await _repo.GetReminder(id);
 

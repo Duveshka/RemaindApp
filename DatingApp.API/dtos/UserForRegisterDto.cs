@@ -8,7 +8,7 @@ namespace DatingApp.API.dtos
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(9, MinimumLength = 4, ErrorMessage = "between 4 and 8 symbols")]
+        [StringLength(19, MinimumLength = 4, ErrorMessage = "between 4 and 8 symbols")]
         public string Password { get; set; }
     }
 }

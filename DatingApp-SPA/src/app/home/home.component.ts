@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
+import { Reminder } from '../.models/reminder';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,9 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   registerMode = false;
   model: any = {};
+  reminders: Reminder [];
+  userId: number;
+
 
   constructor(public authService: AuthService, private alertify: AlertifyService, private http: HttpClient, private router: Router) { }
 
@@ -32,7 +36,8 @@ export class HomeComponent implements OnInit {
     }, error => {
       this.alertify.error('Failed to log in');
     }, () => {
-      this.router.navigate(['/Reminders']);
+      this.userId = this.authService.decodedToken.nameid;
+      this.router.navigate(['/Reminder']);
     });
   }
 

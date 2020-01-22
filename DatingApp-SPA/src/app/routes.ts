@@ -13,7 +13,7 @@ export const appRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
             { path: 'Lists', component: ReminderListComponent},
-            { path: 'Reminders', component: RemindersComponent },
+            { path: 'Reminder', component: RemindersComponent },
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full'},

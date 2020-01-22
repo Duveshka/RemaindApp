@@ -1,3 +1,8 @@
-<p>
-  Reminders works!
-</p>
+<div class="containner">
+  <div class="row">
+    
+    <div *ngFor="let reminder of reminders" class="col-lg-2 col-md-3 col-sm-6">
+      <app-rcard [reminder]="reminder"></app-rcard>
+    </div>
+  </div>
+</div>

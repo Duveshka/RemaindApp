@@ -1,6 +1,7 @@
 using AutoMapper;
 using DatingApp.API.dtos;
 using DatingApp.API.Models;
+using System.Linq;
 
 namespace DatingApp.API.Additions
 {
