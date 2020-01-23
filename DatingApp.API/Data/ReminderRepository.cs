@@ -23,6 +23,11 @@ namespace DatingApp.API.Data
             _context.Remove(entity);
         }
 
+        public async Task<bool> SaveAll()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
+
         public async Task<Reminder> GetReminder(int id)
         {
             var reminder = await _context.Reminders.FirstOrDefaultAsync(u => u.ReminderId == id);

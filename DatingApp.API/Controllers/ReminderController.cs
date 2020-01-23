@@ -13,6 +13,7 @@ using System;
 namespace DatingApp.API.Controllers
 {
     [Authorize]
+    
     [Route("api/{userId}/[controller]")]
     [ApiController]
     public class ReminderController : ControllerBase
@@ -29,17 +30,6 @@ namespace DatingApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetReminders(int userId)
         {
-            //     Console.Write(userId);
-            //     Console.Write("ATTENTION");
-            //     // Console.Write(User);
-
-                
-            // if (userId != int.Parse(user.FindFirst(ClaimTypes.NameIdentifier).Value)){
-                
-            //     return Unauthorized();}
-                
-            
-
             var reminders = await _repo.GetReminders(userId);
 
             var remindersToReturn = _mapper.Map<IEnumerable<ReminderForListdto>>(reminders);
@@ -51,17 +41,30 @@ namespace DatingApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetReminder(int userId, int id)
         {
-        
-            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)){
-            //     
-            //     return Unauthorized();}
-            
             var reminder = await _repo.GetReminder(id);
 
             var reminderToReturn = _mapper.Map<ReminderForDetaildto>(reminder);
 
             return Ok(reminderToReturn);
         }
+
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> DeleteReminder(int id)
+        {
+
+            var reminderFromRepo = await _repo.GetReminder(id);
+
+            _repo.Delete(reminderFromRepo);
+
+            if (await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest("Failed to delete");
+
+        }
+
+
     }
 
 }

@@ -7,8 +7,6 @@ import { Reminder } from '../.models/reminder';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    // tslint:disable-next-line: object-literal-key-quotes
-    'Authorization': 'Bearer ' + localStorage.getItem('token'),
     'Access-Control-Allow-Origin': '*'
   })
 };
@@ -19,20 +17,20 @@ const httpOptions = {
 export class ReminderService {
   baseUrl = environment.apiUrl;
 
-constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-getReminders(userId: number): Observable<Reminder[]> {
-  const headers = new HttpHeaders({'Access-Control-Allow-Origin': '*'}) ;
-  return this.http.get<Reminder[]>(this.baseUrl + userId + '/Reminder', httpOptions);
+  getReminders(userId: number): Observable<Reminder[]> {
+    const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+    return this.http.get<Reminder[]>(this.baseUrl + userId + '/Reminder', httpOptions);
+  }
 
-}
+  getReminder(userId: number, ReminderId: number): Observable<Reminder[]> {
+    const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+    return this.http.get<Reminder[]>(this.baseUrl + userId + '/Reminder/' + ReminderId, httpOptions);
+  }
 
-getReminder(userId: number, ReminderId: number): Observable<Reminder[]> {
-  const headers = new HttpHeaders({'Access-Control-Allow-Origin': '*'}) ;
-  return this.http.get<Reminder[]>(this.baseUrl + userId + '/Reminder' + ReminderId, httpOptions);
-
-}
-
-
-
+  deleteReminder(userId: number, ReminderId: number): Observable<Reminder[]> {
+    const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+    return this.http.delete<Reminder[]>(this.baseUrl + userId + '/Reminder/' + ReminderId, httpOptions);
+  }
 }

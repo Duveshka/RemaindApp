@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './.guards/AuthGuard';
+import { JwtModule } from '@auth0/angular-jwt';
+
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
@@ -16,6 +18,12 @@ import { ReminderCardComponent } from './Reminders/ReminderCard/ReminderCard.com
 import { appRoutes } from './routes';
 import { ReminderService } from './_services/Reminder.service';
 import { AlertifyService } from './_services/alertify.service';
+
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+
+}
 
 @NgModule({
   declarations: [
@@ -32,7 +40,16 @@ import { AlertifyService } from './_services/alertify.service';
     HttpClientModule,
     FormsModule,
     BsDropdownModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    JwtModule.forRoot({
+      config: {
+        // tslint:disable-next-line: object-literal-shorthand
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+        blacklistedRoutes: ['localhost:5000/api/auth']
+
+      }
+    })
   ],
   providers: [AuthService, AlertifyService, ReminderService, AuthGuard],
   bootstrap: [AppComponent]
