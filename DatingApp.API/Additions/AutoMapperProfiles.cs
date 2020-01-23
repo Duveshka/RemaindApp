@@ -11,6 +11,7 @@ namespace DatingApp.API.Additions
        {
            CreateMap<Reminder, ReminderForListdto>();
            CreateMap<Reminder, ReminderForDetaildto>();
+           
        } 
     }
 }

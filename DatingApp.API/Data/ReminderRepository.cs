@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DatingApp.API.dtos;
 using DatingApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,11 +14,18 @@ namespace DatingApp.API.Data
         {
             _context = context;
         }
-        public void Add<T>(T entity) where T : class
+        public async Task<Reminder> AddReminder(int userId, ReminderForAdddto reminderForAdddto)
         {
-            _context.Add(entity);
-        }
+            
+            var reminder = new Reminder(reminderForAdddto.DateTime,
+             reminderForAdddto.Name,  reminderForAdddto.Description, userId);
 
+            await _context.Reminders.AddAsync(reminder);
+            await _context.SaveChangesAsync();
+
+            return reminder; 
+        }
+        
         public void Delete<T>(T entity) where T : class
         {
             _context.Remove(entity);

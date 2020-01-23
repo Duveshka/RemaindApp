@@ -5,11 +5,6 @@ import { Observable } from 'rxjs';
 import { Reminder } from '../.models/reminder';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Access-Control-Allow-Origin': '*'
-  })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -21,16 +16,25 @@ export class ReminderService {
 
   getReminders(userId: number): Observable<Reminder[]> {
     const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-    return this.http.get<Reminder[]>(this.baseUrl + userId + '/Reminder', httpOptions);
+    return this.http.get<Reminder[]>(this.baseUrl + userId + '/Reminder');
   }
 
   getReminder(userId: number, ReminderId: number): Observable<Reminder[]> {
     const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-    return this.http.get<Reminder[]>(this.baseUrl + userId + '/Reminder/' + ReminderId, httpOptions);
+    return this.http.get<Reminder[]>(
+      this.baseUrl + userId + '/Reminder/' + ReminderId
+    );
   }
 
   deleteReminder(userId: number, ReminderId: number): Observable<Reminder[]> {
     const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
-    return this.http.delete<Reminder[]>(this.baseUrl + userId + '/Reminder/' + ReminderId, httpOptions);
+    return this.http.delete<Reminder[]>(
+      this.baseUrl + userId + '/Reminder/' + ReminderId
+    );
+  }
+
+  addReminder(userId: number, reminder: Reminder) {
+    const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*' });
+    return this.http.post(this.baseUrl + userId + '/Reminder', reminder);
   }
 }

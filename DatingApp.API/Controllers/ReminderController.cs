@@ -64,6 +64,18 @@ namespace DatingApp.API.Controllers
 
         }
 
+        [HttpPost]
+
+        public async Task<IActionResult> AddReminder(int userId, [FromBody]ReminderForAdddto reminderForAdddto)
+        {
+            await _repo.AddReminder(userId, reminderForAdddto);
+            
+            return Ok();
+
+            
+
+        }
+
 
     }
 

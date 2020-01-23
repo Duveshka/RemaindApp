@@ -1,10 +1,19 @@
-<div><p align="right"><button class=" top2 btn btn-info">Add New <i class="fa fa-plus"></i></button></p></div>
+<div *ngIf="!addMode" style="text-align: center">
+<div><p align="right"><button class=" top2 btn btn-info" (click)="addToggle()">Add New <i class="fa fa-plus"></i></button></p></div>
 <main role="main">
-  <div class="top container marketing">
+  <div class=" container marketing">
     <div class="row">
-      <div *ngFor="let reminder of reminders" class="col-lg-3 col-md-3 col-sm-6">
-        <app-rcard [reminder]="reminder"></app-rcard>
+      <div *ngFor="let reminder of reminders" class="top2 col-lg-3 col-md-3 col-sm-6">
+        <app-rcard (deletedReminder)="deleteReminder($event)" [reminder]="reminder"></app-rcard>
       </div>
     </div>
   </div>
 </main>
+</div>
+
+<div *ngIf="addMode" class="container">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <app-addreminder (addedReminder)="addReminder($event)" (cancelAdd)="cancelAddMode($event)"></app-addreminder>
+</div>
+

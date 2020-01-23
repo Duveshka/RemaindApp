@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { ReminderListComponent } from './ReminderList/ReminderList.component';
 import { RemindersComponent } from './Reminders/Reminders.component';
 import { ReminderCardComponent } from './Reminders/ReminderCard/ReminderCard.component';
+import { AddReminderComponent } from "./Reminders/addReminder/addReminder.component";
 import { appRoutes } from './routes';
 import { ReminderService } from './_services/Reminder.service';
 import { AlertifyService } from './_services/alertify.service';
@@ -33,7 +34,8 @@ export function tokenGetter() {
     RegisterComponent,
     ReminderListComponent,
     RemindersComponent,
-    ReminderCardComponent
+    ReminderCardComponent,
+    AddReminderComponent
   ],
   imports: [
     BrowserModule,
