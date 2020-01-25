@@ -21,6 +21,7 @@ import { appRoutes } from './routes';
 import { ReminderService } from './_services/Reminder.service';
 import { AlertifyService } from './_services/alertify.service';
 import { EditService } from 'src/app/_services/edit.service';
+import { PushNotificationsModule } from 'ng-push';
 
 
 
@@ -55,7 +56,8 @@ export function tokenGetter() {
         blacklistedRoutes: ['localhost:5000/api/auth']
 
       }
-    })
+    }),
+    PushNotificationsModule
   ],
   providers: [AuthService, AlertifyService, EditService, ReminderService, AuthGuard],
   bootstrap: [AppComponent]
