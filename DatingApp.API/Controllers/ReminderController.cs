@@ -13,7 +13,6 @@ using System;
 namespace DatingApp.API.Controllers
 {
     [Authorize]
-    
     [Route("api/{userId}/[controller]")]
     [ApiController]
     public class ReminderController : ControllerBase
@@ -25,7 +24,6 @@ namespace DatingApp.API.Controllers
             _repo = repo;
             _mapper = mapper;
         }
-
         
         [HttpGet]
         public async Task<IActionResult> GetReminders(int userId)

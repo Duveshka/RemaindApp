@@ -1,6 +1,7 @@
 <nav style="background: orange" class="navbar navbar-expand-md navbar-dark">
   <div class="container">
-    <a style="color: rgb(5, 172, 172)" class="navbar-brand" [routerLink]="['/home']" >Reminders</a>
+    <img src="assets/images.png"  width="40" height="40">
+    <a style="color: rgb(5, 172, 172)" class="navbar-brand ml-3" >Reminders</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,8 +16,10 @@
     </ul>
 
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
+      <button class=" top2 btn btn-info mr-3" (click)="requestPermission()">Turn on <i class="fa fa-bell"></i></button>
       <button class="btn btn-info dropdown-toggle " dropdownToggle>    
         {{ authService.decodedToken?.unique_name }}</button>
+      
 
       <div class="dropdown-menu mt-3" *dropdownMenu >
         <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
