@@ -30,6 +30,9 @@ namespace DatingApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetReminders(int userId)
         {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
             var reminders = await _repo.GetReminders(userId);
 
             var remindersToReturn = _mapper.Map<IEnumerable<ReminderForListdto>>(reminders);
@@ -41,6 +44,9 @@ namespace DatingApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetReminder(int userId, int id)
         {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
             var reminder = await _repo.GetReminder(id);
 
             var reminderToReturn = _mapper.Map<ReminderForDetaildto>(reminder);
@@ -50,8 +56,10 @@ namespace DatingApp.API.Controllers
 
         [HttpDelete("{id}")]
 
-        public async Task<IActionResult> DeleteReminder(int id)
+        public async Task<IActionResult> DeleteReminder(int userId, int id)
         {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
 
             var reminderFromRepo = await _repo.GetReminder(id);
 
@@ -68,12 +76,27 @@ namespace DatingApp.API.Controllers
 
         public async Task<IActionResult> AddReminder(int userId, [FromBody]ReminderForAdddto reminderForAdddto)
         {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
             await _repo.AddReminder(userId, reminderForAdddto);
             
             return Ok();
+        }
 
+        [HttpPut("{id}")]
+
+        public async Task<IActionResult> EditReminder(int userId, int id,
+         [FromBody]ReminderForEditDTO reminderForEditDTO)
+        {
             
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
 
+            _repo.EditReminder(userId, id, reminderForEditDTO);
+            await _repo.SaveAll();
+
+            return Ok();
         }
 
 

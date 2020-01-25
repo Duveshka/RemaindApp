@@ -15,10 +15,13 @@ import { RegisterComponent } from './register/register.component';
 import { ReminderListComponent } from './ReminderList/ReminderList.component';
 import { RemindersComponent } from './Reminders/Reminders.component';
 import { ReminderCardComponent } from './Reminders/ReminderCard/ReminderCard.component';
-import { AddReminderComponent } from "./Reminders/addReminder/addReminder.component";
+import { AddReminderComponent } from './Reminders/addReminder/addReminder.component';
+import { EditReminderComponent } from './Reminders/editReminder/editReminder.component';
 import { appRoutes } from './routes';
 import { ReminderService } from './_services/Reminder.service';
 import { AlertifyService } from './_services/alertify.service';
+import { EditService } from 'src/app/_services/edit.service';
+
 
 
 export function tokenGetter() {
@@ -35,7 +38,8 @@ export function tokenGetter() {
     ReminderListComponent,
     RemindersComponent,
     ReminderCardComponent,
-    AddReminderComponent
+    AddReminderComponent,
+    EditReminderComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [AuthService, AlertifyService, ReminderService, AuthGuard],
+  providers: [AuthService, AlertifyService, EditService, ReminderService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

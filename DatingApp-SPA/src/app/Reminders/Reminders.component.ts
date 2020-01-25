@@ -49,6 +49,7 @@ export class RemindersComponent implements OnInit {
     this.addMode = addMode;
   }
 
+
   deleteReminder($event) {
     const index = this.reminders.indexOf($event);
 

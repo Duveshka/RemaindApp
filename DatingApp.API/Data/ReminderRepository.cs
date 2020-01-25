@@ -25,6 +25,18 @@ namespace DatingApp.API.Data
 
             return reminder; 
         }
+
+        public Reminder EditReminder(int userId, int ReminderId,
+         ReminderForEditDTO reminderForEditDTO)
+        {
+            var editReminder =  _context.Reminders.Find(ReminderId);
+
+            editReminder.DateTime = reminderForEditDTO.DateTime;
+            editReminder.Name = reminderForEditDTO.Name;
+            editReminder.Description = reminderForEditDTO.Description;
+            
+            return editReminder; 
+        }
         
         public void Delete<T>(T entity) where T : class
         {
