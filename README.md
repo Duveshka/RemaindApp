@@ -4,11 +4,24 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Start with Docker
 
-Start on Linux:
+### Start on Linux:
 
 1. `sudo docker-compose up`
 
 2. Navigate to http://localhost/
+
+### Start on Windows:
+
+1.  `docker-compose up`
+
+2. Navigate to http://192.168.99.100/
+
+If this ip dosen't work:
+
+1.  `docker-machine ip`
+
+2. Navigate to this ip
+
 
 ## Start on localhost
 
