@@ -1,25 +1,29 @@
 # ReminderApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21 and [.NET Core SDK](https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netcore2x).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21 and [.NET Core SDK](https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netcore2x) version 3.0.1.
 
 ## Start with Docker
 
 Start on Linux:
 
-`sudo docker-compose up`
+1. `sudo docker-compose up`
 
-Navigate to http://localhost/
+2. Navigate to http://localhost/
 
 ## Start on localhost
 
-### Start backend
-`cd DatingApp.APi`
+### Start backend:
 
-`dotnet watch run`
+1. `cd DatingApp.API`
 
-### Start frontend
-`cd DatingApp-SPA`
+2. `dotnet watch run`
 
-`ng serve`
+### Start frontend:
 
-Navigate to http://localhost:4200/
+1. For start on localhost you need change baseUrl in environment.ts
+
+2. `cd DatingApp-SPA`
+
+3. `ng serve`
+
+4. Navigate to http://localhost:4200/
