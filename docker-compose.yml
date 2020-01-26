@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: nginx-im
+    ports:
+      - 80:80
+    depends_on:
+      - app-api
+      - app-front
+
+  app-api:
+    container_name: app-api
+    build:
+      context: ./DatingApp.API
+      dockerfile: Dockerfile
+    image: app-api-im
+    volumes:
+      - ./DatingApp.API/datingapp.db:/app/datingapp.db
+    ports:
+      - "8080:80"
+
+  app-front:
+    container_name: app-front
+    build:
+      context: ./DatingApp-SPA
+      dockerfile: Dockerfile
+    image: app-front-im
+    ports:
+      - "3000:4200"
+
+

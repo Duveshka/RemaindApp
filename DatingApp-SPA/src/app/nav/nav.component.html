@@ -1,0 +1,39 @@
+<nav style="background: orange" class="navbar navbar-expand-md navbar-dark">
+  <div class="container">
+    <img src="assets/images.png"  width="40" height="40">
+    <a style="color: rgb(5, 172, 172)" class="navbar-brand ml-3" >Reminders</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <ul *ngIf="loggedIn()"   class="navbar-nav mr-auto">
+      <li class="nav-item active" routerLinkActive="active">
+        <a class="btn btn-outline-info  mr-2" [routerLink]="['/Lists']">Lists <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="btn btn-outline-info " [routerLink]="['/Reminder']">My Reminders</a>
+      </li>
+    </ul>
+
+    <div *ngIf="loggedIn()" class="dropdown" dropdown>
+      <button class=" top2 btn btn-info mr-3" (click)="requestPermission()">Turn on <i class="fa fa-bell"></i></button>
+      <button class="btn btn-info dropdown-toggle " dropdownToggle>    
+        {{ authService.decodedToken?.unique_name }}</button>
+      
+
+      <div class="dropdown-menu mt-3" *dropdownMenu >
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i>LogOut</a>
+      </div>
+    </div>
+
+  <!--<form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+      <input class="form-control mr-2" type="text" name="username" placeholder="UserName" required [(ngModel)]="model.username">
+      <input class="form-control " type="password" name="password" placeholder="Password" required [(ngModel)]="model.password">
+      <button [disabled]="!loginForm.valid" class="btn btn-info " type="submit">Login</button>
+    </form>--> 
+
+  </div>
+  
+</nav>
