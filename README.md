@@ -14,9 +14,19 @@ This app was developed for Chrome browsers. Please start in this browser for cor
 
 ### Start on Windows:
 
-1.  `docker-compose up`
+#### Docker Desktop:
 
-2. Navigate to http://192.168.99.100/
+1.  Switch to Linux containers
+
+2. `docker-compose up`
+
+3. Navigate to http://localhost/  
+
+#### Docker Toolbox:
+
+1. `docker-compose up`
+
+2. Navigate to http://192.168.99.100/ 
 
 If this ip dosen't work:
 
