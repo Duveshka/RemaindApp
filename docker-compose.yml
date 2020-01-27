@@ -9,6 +9,7 @@ services:
     image: nginx-im
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - app-api
       - app-front
@@ -19,8 +20,8 @@ services:
       context: ./DatingApp.API
       dockerfile: Dockerfile
     image: app-api-im
-    volumes:
-      - ./DatingApp.API/datingapp.db:/app/datingapp.db
+    # volumes:
+    #   - ./DatingApp.API/datingapp.db:/app/datingapp.db
     ports:
       - "8080:80"
 

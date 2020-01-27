@@ -10,7 +10,7 @@ This app was developed for Chrome browsers. Please start in this browser for cor
 
 1. `sudo docker-compose up`
 
-2. Navigate to http://localhost/
+2. Navigate to https://localhost/
 
 ### Start on Windows:
 
@@ -20,13 +20,13 @@ This app was developed for Chrome browsers. Please start in this browser for cor
 
 2. `docker-compose up`
 
-3. Navigate to http://localhost/  
+3. Navigate to https://localhost/  
 
 #### Docker Toolbox:
 
 1. `docker-compose up`
 
-2. Navigate to http://192.168.99.100/ 
+2. Navigate to https://192.168.99.100/ 
 
 If this ip dosen't work:
 
